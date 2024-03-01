@@ -30,7 +30,7 @@ function Navigation() {
         icon={<StoreMallDirectoryIcon />}
       />
       <BottomNavigationAction
-        label="Reserve"
+        label="Réapro"
         value="stock"
         icon={<BarChartIcon />}
       />

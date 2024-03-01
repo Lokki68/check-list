@@ -61,7 +61,7 @@ export default function LayoutContainer({environment, data, checkProducts}) {
 
   
  
-  const title = environment === "store" ? "Magasin" : "Reserve"
+  const title = environment === "store" ? "Magasin" : "Réaprovisionnement"
 
   const header = 
       (
@@ -92,7 +92,7 @@ export default function LayoutContainer({environment, data, checkProducts}) {
   
 
   return (
-    <Stack spacing={2} sx={{paddingY: 15}}  >
+    <Stack spacing={2} sx={{paddingY: 10}}  >
       <Paper sx={{
         position: 'fixed',
         top: 0,
