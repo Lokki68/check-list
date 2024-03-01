@@ -10,7 +10,6 @@ function Navigation() {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    console.log(newValue);
     navigate(`/${newValue}`)
   }
 
@@ -26,12 +25,12 @@ function Navigation() {
     >
       <BottomNavigation value={value} onChange={handleChange}>
       <BottomNavigationAction
-        label="Store"
+        label="Magasin"
         value="store"
         icon={<StoreMallDirectoryIcon />}
       />
       <BottomNavigationAction
-        label="Stock"
+        label="Reserve"
         value="stock"
         icon={<BarChartIcon />}
       />
