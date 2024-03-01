@@ -1,4 +1,4 @@
-import LayoutContainer from "../components/Layout";
+import LayoutContainer from "../components/LayoutContainer";
 
 function Stock() {
   return (
