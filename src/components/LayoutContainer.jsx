@@ -1,4 +1,4 @@
-import { Box, Button, Container, Paper, Skeleton, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, Input, Paper, Skeleton, Stack, TextField, Typography } from "@mui/material";
 import CardProduct from "./CardProduct";
 import { useContext, useEffect, useState } from "react";
 import ModalProduct from "./ModalProduct";
@@ -6,20 +6,11 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { GlobalStore } from "../context/globalStore";
 import isEmpty from "../utils/emptyObject";
 import Notify from "./Notify";
+import Header from "./Header";
 
-export default function LayoutContainer({environment, data, checkProducts}) {
-  const {
-    storeChecking,
-    setstoreChecking,
-    handleAddChecking,
-    resetStoreChecking
-  } = useContext(GlobalStore)
+export default function LayoutContainer({title, data, showModal, toggleModal, checkProducts}) {
   
-  const [showModal, setShowModal] = useState(false)
-  const [value, setValue] = useState('')
-  const [dateValue, setDateValue] = useState(null)
   const [checkResult, setCheckResult] = useState(storeChecking.products || {})
-  const [notify, setNotify] = useState({message: "", severity: "success"})
 
 
   const handleProductClick = (item) => {
@@ -31,7 +22,6 @@ export default function LayoutContainer({environment, data, checkProducts}) {
     setValue(e.target.value)
   }
 
-  const toggleModal = () => setShowModal(!showModal)
 
   const addCheckResult = ({title, qteValue}) => {
     const prevValue = {...checkResult}
@@ -59,51 +49,9 @@ export default function LayoutContainer({environment, data, checkProducts}) {
     resetStoreChecking()
   }
 
-  
- 
-  const title = environment === "store" ? "Magasin" : "Réaprovisionnement"
-
-  const header = 
-      (
-        notify.message === ''
-          ? (
-            <>
-              <TextField 
-              sx={{width: '100%'}}
-              label="Recherche"
-              value={value}
-              onChange={handleChange}
-              onKeyDown={(e) => {
-                if(e.key === 'Enter' && value) {
-                  toggleModal()
-                }
-              }}
-            />
-            <DatePicker 
-              label="Date" 
-              value={dateValue}
-              onChange={(newValue) => setDateValue(newValue)}
-              disabled={environment === "stock"} 
-            />
-            </>
-          )
-          : <Notify message={notify.message} severity={notify.severity} />
-      )
-  
 
   return (
     <Stack spacing={2} sx={{paddingY: 10}}  >
-      <Paper sx={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        display: 'flex',
-        gap: 2,
-        padding: 2,
-      }} >
-        {header}
-      </Paper>
       {
         showModal && (
           <ModalProduct 
